@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ToolKit="system.windows.controls.data"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Class="WPF_Coordinate_System.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <chartingToolkit:Chart Name="lineChart" 
+                       Title="Line Series Demo" 
+                       VerticalAlignment="Top" 
+                       Height="300"
+                       Width="500">
+            <chartingToolkit:LineSeries Name="line1"  DependentValuePath="Value" IndependentValuePath="Key" 
+                                        ItemsSource="{Binding [0], UpdateSourceTrigger=PropertyChanged}"
+                                        IsSelectionEnabled="True"/>
+
+            <chartingToolkit:LineSeries Name="line2" DependentValuePath="Value" IndependentValuePath="Key" 
+                                        ItemsSource="{Binding [1], UpdateSourceTrigger=PropertyChanged}"
+                                        IsSelectionEnabled="True" SelectionChanged="Selected_Clicked"/>
+            
+        </chartingToolkit:Chart>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="3">
+            <Label Content="X:" />
+            <TextBox x:Name="XTxtInput" 
+                     Width="150" 
+                     Margin="10,0,0,0"/>
+            <Label Content="Y:" 
+                   Margin="10,0,0,0"/>
+            <TextBox x:Name="YTxtInput" 
+                     Width="150" 
+                     Margin="10,0,0,0"/>
+            <Button Content="AddChart" 
+                    Click="Button_Click" 
+                    Margin="10,0,0,0" 
+                    Width="100"/>
+        </StackPanel>
+    </Grid>
+</Window>
